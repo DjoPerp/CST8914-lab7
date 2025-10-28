@@ -180,7 +180,8 @@ article p {
 }
 
 .newsletter {
-  position: absolute;
+  /*position: absolute;
+    Commented to stop the footer bar (its content) from positionning above (/as a front layer on) other elements*/
   left: 0;
   bottom: 0;
   height: 60px;
@@ -226,7 +227,6 @@ article p {
   <!-- Misplaced content, returned to the end of the page. -->
 
   <main class="container">
-    <!--  -->
     <h2 class="offscreen">Top story</h2>
     <article class="main-story">
       <img class="pull-right" src="https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/02-dom-order/images/cat.jpg?raw=true" alt="A cat staring menacingly off into space">
@@ -303,7 +303,7 @@ article p {
     <div class="newsletter">
     <div class="container">
       <h3>Like the Funion? Consider joining our newsletter!</h3>
-      <input type="text">
+      <input type="text" placeholder="Type here...">
       <!-- "onfocus" attribute replaced by an id; the goal is to only call the "getFocus()" function when user hits/presses a validation key. -->
       <button type="button" id="myButton">Sign up</button>
     </div>
