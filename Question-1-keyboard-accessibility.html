@@ -27,6 +27,7 @@ a{
 main a{
   outline: none;
 }
+
 h2 {
   margin-top: 0;
 }
@@ -61,6 +62,12 @@ header {
   position: absolute;
   left: -10000px;
   top: -10000px;
+}
+
+/* Add a visible border or outline for extra clarity around "Read More" links. */
+.info a:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
 }
 
 .menu {
@@ -206,6 +213,7 @@ article p {
       <nav class="menu">
         <a href="#">Home</a>
         <a href="#">Politics</a>
+        <!-- "tabindex=-1" attribute removed from "Business" link, the element will receive focus after "Politics" link and before "Entertainment" link. -->
         <a href="#">Business</a>
         <a href="#">Entertainment</a>
         <a href="#">Sports</a>
@@ -214,15 +222,11 @@ article p {
       </nav>
     </div>
   </header>
-  <div class="newsletter">
-    <div class="container">
-      <h3>Like the Funion? Consider joining our newsletter!</h3>
-      <input type="text">
-      <button type="button" onfocus="getFocus()">Sign up</button></div>
-      
-    </div>
-  </div>
+
+  <!-- Misplaced content, returned to the end of the page. -->
+
   <main class="container">
+    <!--  -->
     <h2 class="offscreen">Top story</h2>
     <article class="main-story">
       <img class="pull-right" src="https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/02-dom-order/images/cat.jpg?raw=true" alt="A cat staring menacingly off into space">
@@ -242,8 +246,14 @@ article p {
           <h2 tabindex="0">In the news</h2>
         </div>
         <article>
-          <h3 class="headline">Bee wonders if maybe everyone else is a drone and he's the only one who has it "figured out."</h3>
-          <p><a href="#" tabindex="1"><b>Read More</b></a></p>
+          <!-- "div" tag with "class=info" attribute added around this article content to collectively identify "Read More" links and add focus indicator with css. -->
+          <div class="info">
+            <h3 class="headline">Bee wonders if maybe everyone else is a drone and he's the only one who has it "figured out."</h3>
+              <p>
+                <!-- "tabindex=1" attribute removed from Read More link for cleaning; being a link makes it natively focusable. -->
+                <a href="#"><b>Read More</b></a>
+              </p>
+          </div>
           <img src="https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/02-dom-order/images/bee.jpg?raw=true" alt="A bee on top of a flower" />
         </article>
       </div>
@@ -262,7 +272,8 @@ article p {
     </div>
     <div class="three-col">
       <div class="tier-header">
-        <h2>Recommended</h2>
+        <!-- "tabindex=0" attribute added for the title "Recommended" to receive focus and match the previous h2 ("In the News"). -->
+        <h2 tabindex="0">Recommended</h2>
       </div>
       <div class="columns">
         <article>
@@ -286,16 +297,45 @@ article p {
     </div>
     
   </main>
-  <!--   stuff can be added here :)
+
+  <!-- This footer content originally placed before the main content was disrupting the focus order of elements. -->
   <footer>
+    <div class="newsletter">
+    <div class="container">
+      <h3>Like the Funion? Consider joining our newsletter!</h3>
+      <input type="text">
+      <!-- "onfocus" attribute replaced by an id; the goal is to only call the "getFocus()" function when user hits/presses a validation key. -->
+      <button type="button" id="myButton">Sign up</button>
+    </div>
+  </div>
   </footer>
-  -->
   
   <script>
     function getFocus() {
       window.open('https://aidaform.com/templates/thank-you-page-with-redirects.html','mywindow').focus()
     }
+
+    //An event listener for key presses (it applies to the entire document, in case other features are added later on).
+    document.addEventListener('keydown', function(event) {
+      // Checking if the pressed key is a validation key (e.g. 'Enter' or 'Space').
+      if (event.key === 'Enter' || event.key === ' ') { 
+          // Checking if the currently focused element is the "Sign up" button, by using its "myButton" id.
+          const focusedElement = document.activeElement;
+          const button = document.getElementById('myButton');
+
+          // Ensuring the key press only triggers the function when the button has focus.
+          if (focusedElement === button) {
+            // Preventing the default button action (if applicable)...
+            event.preventDefault(); 
+            
+            // Activating the function.
+            getFocus();
+          }
+      }
+    });
+
     </script>
+  
 </body>
 
 </html>
