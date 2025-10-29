@@ -64,7 +64,7 @@ header {
   top: -10000px;
 }
 
-/* Add a visible border or outline for extra clarity around "Read More" links when they receive focus. */
+/* Add a visible border/outline for extra clarity around "Read More" links when they receive focus. */
 .info a:focus {
   outline: 2px solid #000;
   outline-offset: 2px;
@@ -181,7 +181,7 @@ article p {
 
 .newsletter {
   /*position: absolute;
-    Commented to stop the footer bar (its content) from positionning above (/as a front layer on) other elements*/
+    The footer bar (its content) sometimes positions above (/as a front layer on) other elements; removing this line stops it from as such.*/
   left: 0;
   bottom: 0;
   height: 60px;
@@ -224,7 +224,7 @@ article p {
     </div>
   </header>
 
-  <!-- Misplaced content, returned to the end of the page. -->
+  <!-- There was a misplaced content; returned it to the end of the page. -->
 
   <main class="container">
     <h2 class="offscreen">Top story</h2>
@@ -246,11 +246,11 @@ article p {
           <h2 tabindex="0">In the news</h2>
         </div>
         <article>
-          <!-- "div" tag with "class=info" attribute added around this article content to collectively identify "Read More" links and add focus indicator with css. -->
+          <!-- "div" tag with "class=info" attribute added around this article content to collectively identify "Read More" links and add a focus indicator on them with css. -->
           <div class="info">
             <h3 class="headline">Bee wonders if maybe everyone else is a drone and he's the only one who has it "figured out."</h3>
               <p>
-                <!-- "tabindex=1" attribute removed from Read More link for cleaning; being a link makes it natively focusable. -->
+                <!-- "tabindex=1" attribute removed from "Read More" link for cleaning; being a link makes it natively focusable. -->
                 <a href="#"><b>Read More</b></a>
               </p>
           </div>
@@ -272,7 +272,7 @@ article p {
     </div>
     <div class="three-col">
       <div class="tier-header">
-        <!-- "tabindex=0" attribute added for the title "Recommended" to receive focus and match the previous h2 ("In the News"). -->
+        <!-- "tabindex=0" attribute added for the title "Recommended" to receive focus, matching the other h2s ("In the News") to keep the navigation consistent. -->
         <h2 tabindex="0">Recommended</h2>
       </div>
       <div class="columns">
@@ -298,14 +298,15 @@ article p {
     
   </main>
 
-  <!-- This footer content originally placed before the main content was disrupting the focus order of elements. -->
+  <!-- This footer content originally misplaced before the main content was disrupting the focus order of elements. -->
   <footer>
     <div class="newsletter">
     <div class="container">
       <h3>Like the Funion? Consider joining our newsletter!</h3>
+      <!-- "placeholder" attribute added for visual recognition of the text box. -->
       <input type="text" placeholder="Type here...">
-      <!-- "onfocus" attribute replaced by an id; the goal is to only call the "getFocus()" function when user hits/presses a validation key. -->
-      <button type="button" id="myButton">Sign up</button>
+      <!-- "onfocus" attribute to "onclick"; it aims to activate the control (calling the "getFocus()" function that opens an external link) only when user hits/presses a validation key. -->
+      <button type="button" onclick="getFocus()">Sign up</button>
     </div>
   </div>
   </footer>
@@ -315,24 +316,24 @@ article p {
       window.open('https://aidaform.com/templates/thank-you-page-with-redirects.html','mywindow').focus()
     }
 
-    //An event listener for key presses (it applies to the entire document, in case other features are added later on).
+    /*-- An event listener for key presses (it applies to the entire document, in case other features are added later on).
     document.addEventListener('keydown', function(event) {
-      // Checking if the pressed key is a validation key (e.g. 'Enter' or 'Space').
+      -- Checking if the pressed key is a validation key (e.g. 'Enter' or 'Space').
       if (event.key === 'Enter' || event.key === ' ') { 
-          // Checking if the currently focused element is the "Sign up" button, by using its "myButton" id.
+          -- Checking if the currently focused element is the "Sign up" button, by using its "myButton" id.
           const focusedElement = document.activeElement;
           const button = document.getElementById('myButton');
 
-          // Ensuring the key press only triggers the function when the button has focus.
+          -- Ensuring the key press only triggers the function when the button has focus.
           if (focusedElement === button) {
-            // Preventing the default button action (if applicable)...
+            -- Preventing the default button action (if applicable)...
             event.preventDefault(); 
             
-            // Activating the function.
+            -- Activating the function.
             getFocus();
           }
       }
-    });
+    });*/
 
     </script>
   
