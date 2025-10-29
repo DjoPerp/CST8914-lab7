@@ -243,7 +243,8 @@ article p {
     <div class="side-by-side">
       <div class="column">
         <div class="tier-header">
-          <h2 tabindex="0">In the news</h2>
+          <!-- "tabindex=0" attribute removed for the title "In the news" to remove focus, matching the other h2s to keep the navigation consistent. -->
+          <h2>In the news</h2>
         </div>
         <article>
           <!-- "div" tag with "class=info" attribute added around this article content to collectively identify "Read More" links and add a focus indicator on them with css. -->
@@ -272,8 +273,9 @@ article p {
     </div>
     <div class="three-col">
       <div class="tier-header">
-        <!-- "tabindex=0" attribute added for the title "Recommended" to receive focus, matching the other h2s ("In the News") to keep the navigation consistent. -->
-        <h2 tabindex="0">Recommended</h2>
+        <!-- Added a "tabindex" attribute on this h2 and kept the previous one at first, because I found it better to indicate which section the user was in.
+         But the very first h2 is made invisible by the css code. Fortunately all the sections have at least one link, and I guess it also serves that purpose, as the web page is not dense. -->
+        <h2>Recommended</h2>
       </div>
       <div class="columns">
         <article>
